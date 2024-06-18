@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import torch
-from utils import timer
-
-from data import cfg
+from ..utils import timer
 
 @torch.jit.script
 def point_form(boxes):
@@ -156,7 +154,7 @@ def change(gt, priors):
 
 
 
-def match(pos_thresh, neg_thresh, truths, priors, labels, crowd_boxes, loc_t, conf_t, idx_t, idx, loc_data):
+def match(cfg, pos_thresh, neg_thresh, truths, priors, labels, crowd_boxes, loc_t, conf_t, idx_t, idx, loc_data):
     """Match each prior box with the ground truth box of the highest jaccard
     overlap, encode the bounding boxes, then return the matched indices
     corresponding to both confidence and location preds.

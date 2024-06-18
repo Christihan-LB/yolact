@@ -1,4 +1,4 @@
-from backbone import ResNetBackbone, VGGBackbone, ResNetBackboneGN, DarkNetBackbone
+from ..backbone import ResNetBackbone, VGGBackbone, ResNetBackboneGN, DarkNetBackbone
 from math import sqrt
 import torch
 
@@ -172,7 +172,18 @@ pascal_sbd_dataset = dataset_base.copy({
     'class_names': PASCAL_CLASSES,
 })
 
+# my_custom_dataset = dataset_base.copy({
+#     'name': 'Bonn Dataset',
 
+#     'train_images': '../data/bonn/images/val/rgb',
+#     'train_info':   '../data/bonn/coco_ann/instances_val_polygon.json',
+
+#     'valid_images': '../data/bonn/images/test/rgb',
+#     'valid_info':   '../data/bonn/coco_ann/instances_test_polygon.json',
+
+#     'has_gt': True,
+#     'class_names': ('box', 'person', 'baloon')
+# })
 
 
 

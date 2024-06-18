@@ -6,8 +6,6 @@ import types
 from numpy import random
 from math import sqrt
 
-from data import cfg, MEANS, STD
-
 
 def intersect(box_a, box_b):
     max_xy = np.minimum(box_a[:, 2:], box_b[2:])
@@ -102,7 +100,7 @@ class Pad(object):
 
     Note: this expects im_w <= width and im_h <= height
     """
-    def __init__(self, width, height, mean=MEANS, pad_gt=True):
+    def __init__(self, width, height, mean, pad_gt=True):
         self.mean = mean
         self.width = width
         self.height = height
@@ -601,7 +599,7 @@ class BackboneTransform(object):
 class BaseTransform(object):
     """ Transorm to be used when evaluating. """
 
-    def __init__(self, mean=MEANS, std=STD):
+    def __init__(self, mean, std):
         self.augment = Compose([
             ConvertFromInts(),
             Resize(resize_gt=False),
@@ -667,7 +665,7 @@ def enable_if(condition, obj):
 class SSDAugmentation(object):
     """ Transform to be used when training. """
 
-    def __init__(self, mean=MEANS, std=STD):
+    def __init__(self, mean, std):
         self.augment = Compose([
             ConvertFromInts(),
             ToAbsoluteCoords(),
